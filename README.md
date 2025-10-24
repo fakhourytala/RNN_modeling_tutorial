@@ -30,3 +30,8 @@ Tested on **Python 3.10+**.
 conda create -n seqwm python=3.10 -y
 conda activate seqwm
 pip install -r requirements.txt
+
+
+
+Contact
+Tala Fakhoury - tf2546@columbia.edu — Center for Theoretical Neuroscience, Columbia
