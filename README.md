@@ -1,37 +1,66 @@
-# Rule-Guided Sequence Planning with RNNs
-**Reproducing PFC-like, rank-ordered working-memory “slot” dynamics and strategy adaptation**
+# RNN Memory Task — Training Code
 
-This notebook trains recurrent neural networks (RNNs) to model **rule-dependent sequence planning**, inspired by macaque **PFC/PMd** population activity in a multi-step, abstract-rule task. It also includes a **meta-RL** variant to infer **policies/values** and detect **strategy shifts** when task parameters change.
+This repository contains a Jupyter Notebook for training a simple **vanilla Recurrent Neural Network (RNN)** on a toy memory task. The network receives 2‑D inputs (x, y) and learns to produce task‑specific outputs after targets are presented in random order.
 
----
+> File: `train_rnn.ipynb`
 
-## TL;DR
-- **Goal:** Model how **abstract rules** are transformed into **rank-ordered WM “slots”** and maintained for sequential control; connect model states to neural-style population geometry.
-- **Core:** Train an RNN (optionally low-rank) on a **3-step rule task**; evaluate **slot representations**, **cross-temporal decoding**, and a **communication-subspace** proxy.
-- **Extras:** A **meta-RL** version that infers monkey-like **policy/strategy shifts** under task changes.
+## Features
+- Minimal, educational RNN built with **PyTorch**
+- Synthetic data generation inside the notebook (no external datasets)
+- GPU support if CUDA is available
+- Plots of activity and outputs using **matplotlib**
 
----
+## Getting Started
 
-## Repository
-- `train_rnn.ipynb` — end-to-end notebook: data generation → model → training → analysis → plots  
-- *(optional)* `data/` — drop real/sim data here  
-- *(optional)* `models/` — saved weights / checkpoints  
-- *(optional)* `figs/` — generated figures
-
-> The project is notebook-first; you can later refactor helpers into `src/`.
-
----
-
-## Environment
-Tested on **Python 3.10+**.
-
-**Install (conda + pip example):**
+### 1) Environment
 ```bash
-conda create -n seqwm python=3.10 -y
-conda activate seqwm
+# Python 3.10+ recommended
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
+
+### 2) Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
+### 3) Run the notebook
+```bash
+# Option A: Jupyter
+pip install jupyter
+jupyter notebook train_rnn.ipynb
 
+# Option B: JupyterLab (optional)
+pip install jupyterlab
+jupyter lab train_rnn.ipynb
+```
 
-Contact
-Tala Fakhoury - tf2546@columbia.edu — Center for Theoretical Neuroscience, Columbia
+### 4) (Optional) Run as a script
+If you prefer running without an interactive UI, you can execute the notebook end‑to‑end with `nbconvert`:
+
+```bash
+pip install nbconvert
+jupyter nbconvert --to notebook --execute train_rnn.ipynb --output run_output.ipynb
+```
+
+This will create `run_output.ipynb` with executed cells, figures, and results.
+
+## Project Structure
+```
+.
+├── train_rnn.ipynb      # Main notebook for data gen, model, training, plots
+├── requirements.txt     # Python dependencies
+└── README.md            # You are here
+```
+
+## Notes & Tips
+- **GPU**: The notebook will use CUDA if available (falls back to CPU otherwise).
+- **Hyperparameters**: Edit the corresponding cells in the notebook (e.g., learning rate, epochs).
+- **Figures**: Plots are generated with matplotlib; you can save them from the notebook.
+- **Reproducibility**: Random seeds are set in-code for Python/NumPy/PyTorch where applicable.
+
+## License
+Add your preferred license (e.g., MIT) in a `LICENSE` file.
+
+## Citation
+If you use this code in academic work, please cite the repository in your methods or acknowledgments.
